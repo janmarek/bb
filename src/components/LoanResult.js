@@ -11,23 +11,23 @@ export default function LoanResult({result}) {
             <tbody>
                 <tr>
                     <th>Term</th>
-                    <td>{formatNumber(result.get('term'))}</td>
+                    <td>{formatNumber(result.term)}</td>
                 </tr>
                 <tr>
                     <th>Monthly Payment</th>
-                    <td>{formatNumber(result.get('monthlyPayment'))}</td>
+                    <td>{formatNumber(result.monthlyPayment)}</td>
                 </tr>
                 <tr>
                     <th>Total Principal</th>
-                    <td>{formatNumber(result.get('totalPrincipal'))}</td>
+                    <td>{formatNumber(result.totalPrincipal)}</td>
                 </tr>
                 <tr>
                     <th>Total Cost of Credit</th>
-                    <td>{formatNumber(result.get('totalCostOfCredit'))}</td>
+                    <td>{formatNumber(result.totalCostOfCredit)}</td>
                 </tr>
                 <tr>
                     <th>Total Repayable Amount</th>
-                    <td>{formatNumber(result.get('totalRepayableAmount'))}</td>
+                    <td>{formatNumber(result.totalRepayableAmount)}</td>
                 </tr>
             </tbody>
         </table>

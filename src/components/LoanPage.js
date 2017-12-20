@@ -34,8 +34,8 @@ class LoanPage extends React.Component {
         }
 
         return <LoanSelector
-            amountConfig={this.props.configuration.get('amountInterval')}
-            termConfig={this.props.configuration.get('termInterval')}
+            amountConfig={this.props.configuration.amountInterval}
+            termConfig={this.props.configuration.termInterval}
             amountValue={this.props.amountValue}
             termValue={this.props.termValue}
             onChangeAmount={this.setAmountValue}
@@ -67,8 +67,8 @@ class LoanPage extends React.Component {
 }
 
 LoanPage = connect(state => ({
-    configurationLoaded: state.getIn(['configuration', 'loaded']),
-    configuration: state.getIn(['configuration', 'configuration']),
+    configurationLoaded: state.configuration.loaded,
+    configuration: state.configuration.configuration,
     amountValue: selectAmount(state),
     termValue: selectTerm(state),
     loan: selectLoan(state),

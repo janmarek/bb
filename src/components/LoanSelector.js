@@ -13,17 +13,17 @@ function LoanSelector({
         <ValueSelector
             name="Amount"
             value={amountValue}
-            min={amountConfig.get('min')}
-            max={amountConfig.get('max')}
-            step={amountConfig.get('step')}
+            min={amountConfig.min}
+            max={amountConfig.max}
+            step={amountConfig.step}
             onChange={onChangeAmount}
         />
         <ValueSelector
             name="Term"
             value={termValue}
-            min={termConfig.get('min')}
-            max={termConfig.get('max')}
-            step={termConfig.get('step')}
+            min={termConfig.min}
+            max={termConfig.max}
+            step={termConfig.step}
             onChange={onChangeTerm}
         />
     </form>;
