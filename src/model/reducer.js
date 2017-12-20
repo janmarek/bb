@@ -1,4 +1,4 @@
-import {combineReducers} from "redux";
+import {combineReducers} from 'redux-immutable';
 import configuration from './configuration/configurationReducer';
 import loan from './loan/loanReducer';
 

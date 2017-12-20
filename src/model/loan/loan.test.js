@@ -1,3 +1,4 @@
+import {Map} from 'immutable';
 import {setAmountValue, setLoan, setTermValue} from "./loanActions";
 import {selectAmount, selectTerm, selectLoan, selectIsLoanLoaded} from './loanSelectors';
 import {createStore} from "../store";
@@ -40,7 +41,11 @@ describe("loan model", () => {
         };
 
         store.dispatch(setLoan(1000, 4, result));
-        expect(selectLoan(store.getState())).toBe(result);
+
+        const state = store.getState();
+        expect(
+            selectLoan(state).equals(Map(result))
+        ).toBe(true);
     });
 
     it('is loaded', () => {
@@ -84,15 +89,21 @@ describe("loan model", () => {
 
         // load term 4
         store.dispatch(setLoan(1000, 4, result4));
-        expect(selectLoan(store.getState())).toBe(result4);
+        expect(
+            selectLoan(store.getState()).equals(Map(result4))
+        ).toBe(true);
 
         // load term 5
         store.dispatch(setTermValue(5));
         store.dispatch(setLoan(1000, 5, result5));
-        expect(selectLoan(store.getState())).toBe(result5);
+        expect(
+            selectLoan(store.getState()).equals(Map(result5))
+        ).toBe(true);
 
         // set term 4 and result is still available
         store.dispatch(setTermValue(4));
-        expect(selectLoan(store.getState())).toBe(result4);
+        expect(
+            selectLoan(store.getState()).equals(Map(result4))
+        ).toBe(true);
     });
 });

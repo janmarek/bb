@@ -1,6 +1,6 @@
 import {getJson} from "../ajax";
 import config from "../../config";
-import {selectIsLoanLoaded} from "./loanSelectors";
+import {selectIsLoanLoaded, selectAmount, selectTerm} from "./loanSelectors";
 
 export const SET_AMOUNT_VALUE = 'LOAN/SET_AMOUNT_VALUE';
 export const SET_TERM_VALUE = 'LOAN/SET_TERM_VALUE';
@@ -33,12 +33,12 @@ export function loadLoan() {
     return (dispatch, getState) => {
         const state = getState();
 
-        const amount = state.loan.amountValue;
-        const term = state.loan.termValue;
-
         if (selectIsLoanLoaded(state)) {
             return;
         }
+
+        const amount = selectAmount(state);
+        const term = selectTerm(state);
 
         getJson(`${config.apiUrl}/real-first-loan-offer`, {amount, term})
             .then(data => {

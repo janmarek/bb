@@ -2,16 +2,16 @@ import {createSelector} from 'reselect';
 
 export const getCacheKey = (amount, term) => `${amount}-${term}`;
 
-export const selectAmount = state => state.loan.amountValue;
-export const selectTerm = state => state.loan.termValue;
+export const selectAmount = state => state.getIn(['loan', 'amountValue']);
+export const selectTerm = state => state.getIn(['loan', 'termValue']);
 
-const selectResults = state => state.loan.results;
+const selectResults = state => state.getIn(['loan', 'results']);
 
 export const selectIsLoanLoaded = createSelector(
     selectAmount,
     selectTerm,
     selectResults,
-    (amount, term, results) => results.hasOwnProperty(getCacheKey(amount, term))
+    (amount, term, results) => typeof results.get(getCacheKey(amount, term)) !== 'undefined'
 );
 
 export const selectLoan = createSelector(
@@ -19,5 +19,5 @@ export const selectLoan = createSelector(
     selectTerm,
     selectIsLoanLoaded,
     selectResults,
-    (amount, term, isLoaded, results) => isLoaded ? results[getCacheKey(amount, term)] : null
+    (amount, term, isLoaded, results) => isLoaded ? results.get(getCacheKey(amount, term)) : null
 )
