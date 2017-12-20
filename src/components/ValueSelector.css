@@ -1,0 +1,22 @@
+.value-selector {
+    border: 1px solid #AAA;
+    border-bottom: none;
+    padding: 1em;
+    background: #EEE;
+}
+
+.value-selector h4 {
+    margin: 0;
+}
+
+.value-selector p {
+    margin: 1em 0 0;
+}
+
+.value-selector select {
+    float: right;
+}
+
+.value-selector input {
+    width: 100%;
+}

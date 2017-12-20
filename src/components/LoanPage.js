@@ -7,6 +7,7 @@ import {selectAmount, selectTerm, selectLoan, selectIsLoanLoaded} from '../model
 import Spinner from './Spinner';
 import LoanResult from './LoanResult';
 import debounce from 'lodash/debounce';
+import './LoanPage.css';
 
 const LOAD_DEBOUNCE_TIME = 400;
 
@@ -29,7 +30,7 @@ class LoanPage extends React.Component {
 
     renderSelector() {
         if (!this.props.configurationLoaded) {
-            return <Spinner />;
+            return null;
         }
 
         return <LoanSelector
@@ -43,7 +44,7 @@ class LoanPage extends React.Component {
     }
 
     renderResult() {
-        if (!this.props.loanLoaded) {
+        if (!this.props.configurationLoaded || !this.props.loanLoaded) {
             return <Spinner />;
         }
 
@@ -53,7 +54,9 @@ class LoanPage extends React.Component {
     render() {
         return <div>
             {this.renderSelector()}
-            {this.renderResult()}
+            <div className="loan-content">
+                {this.renderResult()}
+            </div>
         </div>;
     }
 

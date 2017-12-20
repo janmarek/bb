@@ -1,5 +1,6 @@
 import React from 'react';
 import ValueSelect from './ValueSelect';
+import './ValueSelector.css';
 
 class ValueSelector extends React.Component {
 
@@ -9,7 +10,7 @@ class ValueSelector extends React.Component {
 
     render() {
         const {name, min, max, step, value} = this.props;
-        return <div>
+        return <div className="value-selector">
             <h4>
                 {name}
                 <ValueSelect
