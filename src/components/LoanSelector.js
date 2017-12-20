@@ -1,4 +1,5 @@
 import React from 'react';
+import ValueSelector from './ValueSelector';
 
 function LoanSelector({
     amountConfig,
@@ -9,32 +10,22 @@ function LoanSelector({
     onChangeTerm
 }) {
     return <form>
-        <div>
-            <h4>Amount {amountValue}</h4>
-            <p>
-                <input
-                    type="range"
-                    min={amountConfig.min}
-                    max={amountConfig.max}
-                    step={amountConfig.step}
-                    value={amountValue}
-                    onChange={e => onChangeAmount(e.target.value)}
-                />
-            </p>
-        </div>
-        <div>
-            <h4>Term {termValue}</h4>
-            <p>
-                <input
-                    type="range"
-                    min={termConfig.min}
-                    max={termConfig.max}
-                    step={termConfig.step}
-                    value={termValue}
-                    onChange={e => onChangeTerm(e.target.value)}
-                />
-            </p>
-        </div>
+        <ValueSelector
+            name="Amount"
+            value={amountValue}
+            min={amountConfig.min}
+            max={amountConfig.max}
+            step={amountConfig.step}
+            onChange={onChangeAmount}
+        />
+        <ValueSelector
+            name="Term"
+            value={termValue}
+            min={termConfig.min}
+            max={termConfig.max}
+            step={termConfig.step}
+            onChange={onChangeTerm}
+        />
     </form>;
 }
 
