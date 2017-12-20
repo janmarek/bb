@@ -3,6 +3,7 @@ import LoanSelector from "./LoanSelector";
 import {connect} from 'react-redux';
 import {loadConfiguration} from '../model/configuration/configurationActions';
 import {setAmountValue, setTermValue, loadLoan} from '../model/loan/loanActions';
+import {selectAmount, selectTerm, selectLoan, selectIsLoanLoaded} from '../model/loan/loanSelectors';
 import Spinner from './Spinner';
 import LoanResult from './LoanResult';
 import debounce from 'lodash/debounce';
@@ -42,7 +43,7 @@ class LoanPage extends React.Component {
     }
 
     renderResult() {
-        if (this.props.loan === null) {
+        if (!this.props.loanLoaded) {
             return <Spinner />;
         }
 
@@ -65,9 +66,10 @@ class LoanPage extends React.Component {
 LoanPage = connect(state => ({
     configurationLoaded: state.configuration.loaded,
     configuration: state.configuration.configuration,
-    amountValue: state.loan.amountValue,
-    termValue: state.loan.termValue,
-    loan: state.loan.loan,
+    amountValue: selectAmount(state),
+    termValue: selectTerm(state),
+    loan: selectLoan(state),
+    loanLoaded: selectIsLoanLoaded(state),
 }), {
     loadConfiguration,
     setAmountValue,

@@ -1,10 +1,11 @@
 import {SET_CONFIGURATION} from "../configuration/configurationActions";
 import {SET_AMOUNT_VALUE, SET_TERM_VALUE, SET_LOAN} from "./loanActions";
+import {getCacheKey} from './loanSelectors';
 
 const initData = {
     amountValue: null,
     termValue: null,
-    loan: null,
+    results: {},
 };
 
 export default function configurationReducer(state = initData, action) {
@@ -19,18 +20,20 @@ export default function configurationReducer(state = initData, action) {
             return {
                 ...state,
                 amountValue: action.value,
-                loan: null, // invalidate
             };
         case SET_TERM_VALUE:
             return {
                 ...state,
                 termValue: action.value,
-                loan: null, // invalidate
             };
         case SET_LOAN:
+            const cacheKey = getCacheKey(action.amount, action.term);
             return {
                 ...state,
-                loan: action.data,
+                results: {
+                    ...state.results,
+                    [cacheKey]: action.data,
+                },
             };
         default:
             return state;
